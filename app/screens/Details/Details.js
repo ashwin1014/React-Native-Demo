@@ -11,8 +11,8 @@ const Details = () => {
   return (
     <View style={detailStyles.container}>
       <Card>
-        <Text>{params.name || ''}</Text>
-        <Text>{params.desc || ''}</Text>
+        <Text style={detailStyles.title}>{params.name || ''}</Text>
+        <Text style={detailStyles.desc}>{params.desc || ''}</Text>
       </Card>
     </View>
   );

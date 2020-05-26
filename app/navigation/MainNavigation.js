@@ -1,7 +1,16 @@
 import React from 'react';
+import {useDispatch} from 'react-redux';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from '@react-navigation/drawer';
+import {Alert} from 'react-native';
+
+import {setAuthentication} from '../commonActions/Auth/Auth.Actions';
 
 const Stack = createStackNavigator();
 const TopTabs = createMaterialTopTabNavigator();
@@ -15,6 +24,7 @@ import Details from '../screens/Details/Details';
 import Header from '../shared/Header/Header';
 
 const MainNavigation = () => {
+  const dispatch = useDispatch();
   const TopTabsNavigator = () => (
     <TopTabs.Navigator>
       <TopTabs.Screen name="Items" component={Home} />
@@ -71,8 +81,36 @@ const MainNavigation = () => {
     </Stack.Navigator>
   );
 
+  const CustomDrawerOption = props => {
+    const signoutHandler = () => {
+      dispatch(setAuthentication(false));
+    };
+
+    const signoutAlert = () =>
+      Alert.alert(
+        'Sign out',
+        'Are you sure you want to signout?',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel',
+          },
+          {text: 'OK', onPress: () => signoutHandler()},
+        ],
+        {cancelable: false},
+      );
+
+    return (
+      <DrawerContentScrollView {...props}>
+        <DrawerItemList {...props} />
+        <DrawerItem label="Sign out" onPress={signoutAlert} />
+      </DrawerContentScrollView>
+    );
+  };
+
   return (
-    <Drawer.Navigator>
+    <Drawer.Navigator
+      drawerContent={props => <CustomDrawerOption {...props} />}>
       <Drawer.Screen name="Home" children={HomeStackScreen} />
       <Drawer.Screen name="Account" children={AccountStackScreen} />
       <Drawer.Screen name="Settings" children={SettingsStackScreen} />
