@@ -6,7 +6,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
-
+import {useIsDrawerOpen} from '@react-navigation/drawer';
 import globalStyles from '../../styles/globalStyles';
 import homeStyles from './Home.style';
 
@@ -21,6 +21,7 @@ const DUMMY_ITEMS = [
 ];
 
 const Home = ({navigation}) => {
+  const isDrawerOpen = useIsDrawerOpen();
   const itemPressHandler = data => {
     if (data.id === '5') {
       navigation.navigate('Tabs');
@@ -28,6 +29,13 @@ const Home = ({navigation}) => {
     }
     navigation.navigate('Details', data);
   };
+
+  React.useEffect(() => {
+    if (isDrawerOpen) {
+      navigation.closeDrawer();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <View style={{...globalStyles.container, ...homeStyles.container}}>

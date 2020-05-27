@@ -33,6 +33,7 @@ import Tab3 from '../screens/Tabs/Tab3';
 
 const MainNavigation = () => {
   const dispatch = useDispatch();
+
   const TopTabsNavigator = () => (
     <TopTabs.Navigator>
       <TopTabs.Screen name="Items" component={Home} />
@@ -161,7 +162,9 @@ const MainNavigation = () => {
 
   return (
     <Drawer.Navigator
-      drawerContent={props => <CustomDrawerOption {...props} />}>
+      drawerContent={props => <CustomDrawerOption {...props} />}
+      openByDefault={false}
+      initialRouteName="Home">
       <Drawer.Screen name="Home" children={HomeStackScreen} />
       <Drawer.Screen name="Account" children={AccountStackScreen} />
       <Drawer.Screen name="Settings" children={SettingsStackScreen} />
