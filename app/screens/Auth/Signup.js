@@ -30,6 +30,7 @@ const Login = ({setAuthMode}) => {
         placeholder="Enter password"
         style={styles.input}
         onChangeText={signupChangeHandler('password')}
+        secureTextEntry={true}
       />
       <TextInput
         placeholder="Enter mobile"

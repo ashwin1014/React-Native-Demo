@@ -22,6 +22,10 @@ const DUMMY_ITEMS = [
 
 const Home = ({navigation}) => {
   const itemPressHandler = data => {
+    if (data.id === '5') {
+      navigation.navigate('Tabs');
+      return;
+    }
     navigation.navigate('Details', data);
   };
 

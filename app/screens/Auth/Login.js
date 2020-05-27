@@ -29,6 +29,7 @@ const Login = ({setAuthMode}) => {
         placeholder="Enter password"
         style={styles.input}
         onChangeText={loginChangeHandler('password')}
+        secureTextEntry={true}
       />
       <Button
         title="Login"

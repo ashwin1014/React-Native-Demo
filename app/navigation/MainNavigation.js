@@ -2,6 +2,10 @@ import React from 'react';
 import {useDispatch} from 'react-redux';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -15,6 +19,7 @@ import {setAuthentication} from '../commonActions/Auth/Auth.Actions';
 const Stack = createStackNavigator();
 const TopTabs = createMaterialTopTabNavigator();
 const Drawer = createDrawerNavigator();
+const BottomTabs = createBottomTabNavigator();
 
 import Home from '../screens/Home/Home';
 import About from '../screens/About/About';
@@ -22,6 +27,9 @@ import Settings from '../screens/Settings/Settings';
 import Account from '../screens/Account/Account';
 import Details from '../screens/Details/Details';
 import Header from '../shared/Header/Header';
+import Tab1 from '../screens/Tabs/Tab1';
+import Tab2 from '../screens/Tabs/Tab2';
+import Tab3 from '../screens/Tabs/Tab3';
 
 const MainNavigation = () => {
   const dispatch = useDispatch();
@@ -30,6 +38,48 @@ const MainNavigation = () => {
       <TopTabs.Screen name="Items" component={Home} />
       <TopTabs.Screen name="About" component={About} />
     </TopTabs.Navigator>
+  );
+
+  const BottomTabsNavigator = () => (
+    <BottomTabs.Navigator
+      screenOptions={({route}) => ({
+        tabBarIcon: ({focused, color, size}) => {
+          let iconName;
+
+          if (route.name === 'Tab1') {
+            iconName = focused
+              ? 'numeric-1-circle'
+              : 'numeric-1-circle-outline';
+          } else if (route.name === 'Tab2') {
+            iconName = focused
+              ? 'numeric-2-circle'
+              : 'numeric-2-circle-outline';
+          } else {
+            iconName = focused
+              ? 'numeric-3-circle'
+              : 'numeric-2-circle-outline';
+          }
+          return (
+            <MaterialCommunityIcons name={iconName} size={size} color={color} />
+          );
+        },
+      })}>
+      <BottomTabs.Screen name="Tab1" component={Tab1} />
+      <BottomTabs.Screen name="Tab2" component={Tab2} />
+      <BottomTabs.Screen name="Tab3" component={Tab3} />
+    </BottomTabs.Navigator>
+  );
+
+  const TabStack = ({navigation}) => (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Tabs"
+        children={BottomTabsNavigator}
+        options={{
+          headerTitle: props => <Header navigation={navigation} {...props} />,
+        }}
+      />
+    </Stack.Navigator>
   );
 
   const HomeStackScreen = ({navigation}) => (
@@ -54,6 +104,7 @@ const MainNavigation = () => {
           },
         })}
       />
+      <Stack.Screen name="Tabs" component={BottomTabsNavigator} />
     </Stack.Navigator>
   );
 
@@ -114,6 +165,7 @@ const MainNavigation = () => {
       <Drawer.Screen name="Home" children={HomeStackScreen} />
       <Drawer.Screen name="Account" children={AccountStackScreen} />
       <Drawer.Screen name="Settings" children={SettingsStackScreen} />
+      <Drawer.Screen name="Tabs" children={TabStack} />
     </Drawer.Navigator>
   );
 };
