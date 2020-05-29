@@ -24,12 +24,13 @@ const BottomTabs = createBottomTabNavigator();
 import Home from '../screens/Home/Home';
 import About from '../screens/About/About';
 import Settings from '../screens/Settings/Settings';
-import Account from '../screens/Account/Account';
+import OrderFood from '../screens/OrderFood/OrderFood';
 import Details from '../screens/Details/Details';
 import Header from '../shared/Header/Header';
 import Tab1 from '../screens/Tabs/Tab1';
 import Tab2 from '../screens/Tabs/Tab2';
 import Tab3 from '../screens/Tabs/Tab3';
+import ViewAll from '../screens/OrderFood/Components/ViewAll/ViewAll';
 
 const MainNavigation = () => {
   const dispatch = useDispatch();
@@ -109,14 +110,21 @@ const MainNavigation = () => {
     </Stack.Navigator>
   );
 
-  const AccountStackScreen = ({navigation}) => (
+  const FoodOrderStackScreen = ({navigation}) => (
     <Stack.Navigator>
       <Stack.Screen
-        name="Account"
-        component={Account}
+        name="Order Food"
+        component={OrderFood}
         options={{
           headerTitle: props => <Header navigation={navigation} {...props} />,
         }}
+      />
+      <Stack.Screen
+        name="View More"
+        component={ViewAll}
+        options={({route}) => ({
+          title: route.params.name || 'View More!',
+        })}
       />
     </Stack.Navigator>
   );
@@ -166,7 +174,7 @@ const MainNavigation = () => {
       openByDefault={false}
       initialRouteName="Home">
       <Drawer.Screen name="Home" children={HomeStackScreen} />
-      <Drawer.Screen name="Account" children={AccountStackScreen} />
+      <Drawer.Screen name="Order Food" children={FoodOrderStackScreen} />
       <Drawer.Screen name="Settings" children={SettingsStackScreen} />
       <Drawer.Screen name="Tabs" children={TabStack} />
     </Drawer.Navigator>

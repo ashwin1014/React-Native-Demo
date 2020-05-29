@@ -1,0 +1,58 @@
+import {SAMPLE_IMAGES} from '../../assets/images/images';
+
+export const DUMMY_DATA = [
+  {
+    id: 'm1',
+    name: 'Combo Breakfast',
+    restaurant: 'Madhurai Idli Shop',
+    type: 'veg',
+    cost: 11800,
+    discountCost: 15200,
+    img: SAMPLE_IMAGES.img1,
+  },
+  {
+    id: 'm2',
+    name: 'Lazy Morning Breakfast',
+    restaurant: 'Go Healthie',
+    type: 'non-veg',
+    cost: 11000,
+    discountCost: 9500,
+    img: SAMPLE_IMAGES.img2,
+  },
+  {
+    id: 'm3',
+    name: 'Full Breakfast',
+    restaurant: 'All Recipies',
+    type: 'non-veg',
+    cost: 12000,
+    discountCost: 9800,
+    img: SAMPLE_IMAGES.img3,
+  },
+  {
+    id: 'm4',
+    name: 'Breakfast Sliders',
+    restaurant: 'The Kitchn',
+    type: 'non-veg',
+    cost: 12000,
+    discountCost: null,
+    img: SAMPLE_IMAGES.img4,
+  },
+  {
+    id: 'm5',
+    name: 'Breakfast Strata',
+    restaurant: 'Spoonacular',
+    type: 'veg',
+    cost: 15000,
+    discountCost: 10000,
+    img: SAMPLE_IMAGES.img5,
+  },
+  {
+    id: 'm6',
+    name: 'Breakfast Pie',
+    restaurant: 'Taste of Home',
+    type: 'non-veg',
+    cost: 16000,
+    discountCost: null,
+    img: SAMPLE_IMAGES.img6,
+  },
+];
