@@ -15,6 +15,24 @@ const styles = StyleSheet.create({
     color: '#333',
     letterSpacing: 1,
   },
+  search: {
+    position: 'absolute',
+    right: 16,
+  },
+  modalContent: {
+    flex: 1,
+    marginVertical: 20,
+    padding: 10,
+  },
+  modalToggle: {
+    marginBottom: 10,
+    padding: 10,
+    alignSelf: 'flex-end',
+  },
+  modalClose: {
+    marginTop: 20,
+    marginBottom: 0,
+  },
 });
 
 export default styles;

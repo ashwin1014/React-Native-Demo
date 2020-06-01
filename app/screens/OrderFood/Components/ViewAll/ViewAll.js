@@ -1,9 +1,8 @@
 import React from 'react';
-import {View, Text, FlatList, StyleSheet} from 'react-native';
+import {View, FlatList, StyleSheet} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 
 import ItemCard from '../ItemCard/ItemCard';
-import Center from '../../../../shared/Center/Center';
 
 const ViewAll = () => {
   const {

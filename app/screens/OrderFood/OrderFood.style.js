@@ -26,7 +26,18 @@ const styles = StyleSheet.create({
   listFooterWrap: {
     flexDirection: 'column',
     alignItems: 'center',
-  }
+  },
+  iconBtnsList: {
+    marginTop: 5,
+    marginBottom: 10,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  categoryBtn: {
+    marginRight: 8,
+    marginTop: 2,
+    marginBottom: 2,
+  },
 });
 
 export default styles;
